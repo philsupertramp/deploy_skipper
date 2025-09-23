@@ -1,0 +1,66 @@
+[project]
+name = "deploy-skipper"
+version = "0.0.1"
+description = "A CLI utility to detect if a project requires a deployment based on a .deployignore file"
+authors = [
+    {name = "Philipp Zettl"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+dependencies = [
+]
+package-mode = false
+
+[project.scripts]
+deploy-skipper = "deploy_skipper:main"
+
+[tool.poetry.group.dev.dependencies]
+parameterized = "^0.9.0"
+pytest = "^8.4.2"
+pytest-cov = "^7.0.0"
+pyinstaller = "^6.16.0"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+testpaths = [
+    "tests",
+]
+
+[tool.coverage.html]
+directory = "coverage_html"
+
+[tool.coverage.report]
+# Regexes for lines to exclude from consideration
+exclude_also = [
+  # Don't complain about abstract methods, they aren't run:
+  "@(abc\\.)?abstractmethod",
+  # Don't complain about missing debug-only code:
+  "def __repr__",
+  "def __str__",
+  # Don't complain if non-runnable code isn't run:
+  "if 0:",
+  "if __name__ == .__main__.:",
+  "if self\\.debug",
+  # Don't complain if tests don't hit defensive assertion code:
+  "raise AssertionError",
+  "raise NotImplementedError"
+]
+ignore_errors = true
+omit = [
+  "__init__.py",
+  "test_*.py"
+]
+show_missing = true
+skip_covered = true
+skip_empty = true
+
+[tool.coverage.run]
+branch = true
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+

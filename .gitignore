@@ -1,0 +1,15 @@
+*.pyc
+
+__pycache__/
+
+dist/
+build/
+
+.venv/
+.pytest_cache/
+
+.coverage
+
+tags
+
+*.spec
