@@ -32,7 +32,7 @@ jobs:
           # NOTE: put your own distribution build steps here.
           python -m pip install build pyinstaller
           python -m build
-          python -m pyinstaller --onefile deploy_skipper.py
+          pyinstaller --onefile deploy_skipper.py
 
       - name: Upload distributions
         uses: actions/upload-artifact@v4
