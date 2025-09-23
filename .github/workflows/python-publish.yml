@@ -32,13 +32,19 @@ jobs:
           # NOTE: put your own distribution build steps here.
           python -m pip install build pyinstaller
           python -m build
-          pyinstaller --onefile deploy_skipper.py
+          pyinstaller --onefile deploy_skipper.py --distpath ./dist_standalone
 
       - name: Upload distributions
         uses: actions/upload-artifact@v4
         with:
           name: release-dists
           path: dist/
+
+      - name: Upload standalone distributions
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-dists-standalone
+          path: dist_standalone/
 
   pypi-publish:
     runs-on: ubuntu-latest
