@@ -30,7 +30,7 @@ jobs:
       - name: Build release distributions
         run: |
           # NOTE: put your own distribution build steps here.
-          python -m pip install build
+          python -m pip install build pyinstaller
           python -m build
           python -m pyinstaller --onefile deploy_skipper.py
 
@@ -66,3 +66,4 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           packages-dir: dist/
+          password: ${{ secrets.PYPI_API_TOKEN }}
