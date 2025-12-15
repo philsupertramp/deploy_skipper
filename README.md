@@ -1,17 +1,12 @@
 # Deploy Skipper 🚀
 
 **Smart, zero-dependency deployment gating for your CI/CD pipeline.**
-Stop deploying when nothing meaningful changed — save time, reduce errors, and speed up your workflow.
-
----
 
 ## Why Deploy Skipper?
 
 Imagine running a deployment every time **any file changes**, even trivial docs or images. Wasted time, wasted resources, and unnecessary production churn.
 
 `Deploy Skipper` intelligently decides **whether a deployment is necessary** by checking your changed files against **blacklist & whitelist rules**, giving you full control over what triggers your CI/CD.
-
----
 
 ## Features
 
@@ -36,8 +31,6 @@ Imagine running a deployment every time **any file changes**, even trivial docs 
   * `0` → deploy (relevant changes found)
   * `1` → skip (only ignored changes)
   * `2` → error/misconfiguration
-
----
 
 ## Installation
 
@@ -64,39 +57,37 @@ pyinstaller --onefile deploy_skipper.py
 **Option 2: Install via pip (recommended)**
 
 ```bash
-pip install deploy_skipper
-deploy_skipper
+pip install deploy-skipper
+deploy-skipper
 ```
 
-> Once installed, the `deploy_skipper` command is available.
-
----
+> Once installed, the `deploy-skipper` command is available.
 
 ## Usage
 
 ```bash
 # Diff against previous commit
-deploy_skipper
+deploy-skipper
 
 # Diff against the most recent tag
-deploy_skipper --tag
+deploy-skipper --tag
 
 # Diff against a specific commit
-deploy_skipper --ref 3f4e2a1
+deploy-skipper --ref 3f4e2a1
 
 # Use a custom ignore file
-deploy_skipper --ignore-file .mydeployignore
+deploy-skipper --ignore-file .mydeployignore
 
 # See verbose output of what triggered the deploy
-deploy_skipper --verbose
+deploy-skipper --verbose
 ```
 
 ---
 
 ## `.deployignore` Format
 
-* **Blacklist patterns** (ignored files) – default: lines without `!`
-* **Whitelist patterns** (un-ignore files) – prefix lines with `!`
+* **Blacklist patterns** (ignored files) *default*: lines without `!`
+* **Whitelist patterns** (un-ignore files) prefix lines with `!`
 
 ```text
 # Ignore all markdown files
@@ -116,8 +107,6 @@ src/**/*.js
 
 > Whitelist always wins. Even if a file matches a blacklist pattern, if it’s in the whitelist, it will trigger a deploy.
 
----
-
 ## Examples
 
 ### Skip deployment for docs-only changes
@@ -134,7 +123,7 @@ docs/setup.md
 ```
 
 ```bash
-deploy_skipper --verbose
+deploy-skipper --verbose
 # Output:
 # README.md: matched blacklist pattern '*.md' -> IGNORED
 # docs/setup.md: matched blacklist pattern 'docs/*' -> IGNORED
@@ -159,7 +148,7 @@ config/settings.yaml
 ```
 
 ```bash
-deploy_skipper --verbose
+deploy-skipper --verbose
 # Output:
 # README.md: matched blacklist pattern '*.md' -> IGNORED
 # config/settings.yaml: matched whitelist pattern 'config/settings.yaml' -> RELEVANT
@@ -170,6 +159,20 @@ deploy_skipper --verbose
 ✅ Result: **CI/CD triggers deploy**, as intended.
 
 ---
+## Example integrations
+
+### Travis CI
+```yaml
+...
+
+install:
+  - pip install deploy-skipper
+
+jobs:
+  include:
+    - stage: build_and_test
+      script: deploy-skipper --ref HEAD~1 || travis_terminate 0
+```
 
 ## Integration Tips
 
@@ -178,22 +181,10 @@ deploy_skipper --verbose
 
   ```yaml
   - name: Check if deployment is needed
-    run: deploy_skipper
+    run: deploy-skipper || exit 0
   ```
 * **Dry run** for debugging (verbose output shows exactly what is happening)
 * Combine with caching & notifications for maximum CI efficiency
-
----
-
-## Why You’ll Love It
-
-* Save hours of unnecessary deployments
-* Reduce deployment-related errors
-* Full control over what changes actually matter
-* Transparent & easy-to-read logs
-* Works on any platform with Python 3
-
----
 
 ## Contribute
 
@@ -203,8 +194,6 @@ We welcome PRs, suggestions, or improvements!
 * Improve **pattern matching rules** for edge cases
 * Add **integration templates** for popular CI/CD systems
 
----
-
 ## License
 
-MIT License – use freely in personal or commercial projects.
+MIT License
