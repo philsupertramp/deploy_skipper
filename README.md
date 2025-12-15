@@ -180,10 +180,9 @@ install:
   - pip install deploy-skipper
 
 jobs:
-  - name: deploy
-    steps:
-        - deploy-skipper --ref HEAD~1 || travis_terminate 0
-        - ./deploy.sh
+  include:
+    - stage: build_and_test
+      script: deploy-skipper --ref HEAD~1 || travis_terminate 0
 ```
 
 ## Integration Tips
