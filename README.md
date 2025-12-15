@@ -65,10 +65,10 @@ pyinstaller --onefile deploy_skipper.py
 
 ```bash
 pip install deploy_skipper
-deploy_skipper
+deploy-skipper
 ```
 
-> Once installed, the `deploy_skipper` command is available.
+> Once installed, the `deploy-skipper` command is available.
 
 ---
 
@@ -76,19 +76,19 @@ deploy_skipper
 
 ```bash
 # Diff against previous commit
-deploy_skipper
+deploy-skipper
 
 # Diff against the most recent tag
-deploy_skipper --tag
+deploy-skipper --tag
 
 # Diff against a specific commit
-deploy_skipper --ref 3f4e2a1
+deploy-skipper --ref 3f4e2a1
 
 # Use a custom ignore file
-deploy_skipper --ignore-file .mydeployignore
+deploy-skipper --ignore-file .mydeployignore
 
 # See verbose output of what triggered the deploy
-deploy_skipper --verbose
+deploy-skipper --verbose
 ```
 
 ---
@@ -134,7 +134,7 @@ docs/setup.md
 ```
 
 ```bash
-deploy_skipper --verbose
+deploy-skipper --verbose
 # Output:
 # README.md: matched blacklist pattern '*.md' -> IGNORED
 # docs/setup.md: matched blacklist pattern 'docs/*' -> IGNORED
@@ -159,7 +159,7 @@ config/settings.yaml
 ```
 
 ```bash
-deploy_skipper --verbose
+deploy-skipper --verbose
 # Output:
 # README.md: matched blacklist pattern '*.md' -> IGNORED
 # config/settings.yaml: matched whitelist pattern 'config/settings.yaml' -> RELEVANT
@@ -170,6 +170,21 @@ deploy_skipper --verbose
 ✅ Result: **CI/CD triggers deploy**, as intended.
 
 ---
+## Example integrations
+
+### Travis CI
+```yaml
+...
+
+install:
+  - pip install deploy-skipper
+
+jobs:
+  - name: deploy
+    steps:
+        - deploy-skipper --ref HEAD~1 || travis_terminate 0
+        - ./deploy.sh
+```
 
 ## Integration Tips
 
