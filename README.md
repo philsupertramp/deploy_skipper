@@ -64,7 +64,7 @@ pyinstaller --onefile deploy_skipper.py
 **Option 2: Install via pip (recommended)**
 
 ```bash
-pip install deploy_skipper
+pip install deploy-skipper
 deploy-skipper
 ```
 
@@ -193,7 +193,7 @@ jobs:
 
   ```yaml
   - name: Check if deployment is needed
-    run: deploy_skipper
+    run: deploy-skipper || exit 0
   ```
 * **Dry run** for debugging (verbose output shows exactly what is happening)
 * Combine with caching & notifications for maximum CI efficiency
