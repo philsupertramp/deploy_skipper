@@ -1,17 +1,12 @@
 # Deploy Skipper 🚀
 
 **Smart, zero-dependency deployment gating for your CI/CD pipeline.**
-Stop deploying when nothing meaningful changed — save time, reduce errors, and speed up your workflow.
-
----
 
 ## Why Deploy Skipper?
 
 Imagine running a deployment every time **any file changes**, even trivial docs or images. Wasted time, wasted resources, and unnecessary production churn.
 
 `Deploy Skipper` intelligently decides **whether a deployment is necessary** by checking your changed files against **blacklist & whitelist rules**, giving you full control over what triggers your CI/CD.
-
----
 
 ## Features
 
@@ -36,8 +31,6 @@ Imagine running a deployment every time **any file changes**, even trivial docs 
   * `0` → deploy (relevant changes found)
   * `1` → skip (only ignored changes)
   * `2` → error/misconfiguration
-
----
 
 ## Installation
 
@@ -70,8 +63,6 @@ deploy-skipper
 
 > Once installed, the `deploy-skipper` command is available.
 
----
-
 ## Usage
 
 ```bash
@@ -95,8 +86,8 @@ deploy-skipper --verbose
 
 ## `.deployignore` Format
 
-* **Blacklist patterns** (ignored files) – default: lines without `!`
-* **Whitelist patterns** (un-ignore files) – prefix lines with `!`
+* **Blacklist patterns** (ignored files) *default*: lines without `!`
+* **Whitelist patterns** (un-ignore files) prefix lines with `!`
 
 ```text
 # Ignore all markdown files
@@ -115,8 +106,6 @@ src/**/*.js
 ```
 
 > Whitelist always wins. Even if a file matches a blacklist pattern, if it’s in the whitelist, it will trigger a deploy.
-
----
 
 ## Examples
 
@@ -197,18 +186,6 @@ jobs:
 * **Dry run** for debugging (verbose output shows exactly what is happening)
 * Combine with caching & notifications for maximum CI efficiency
 
----
-
-## Why You’ll Love It
-
-* Save hours of unnecessary deployments
-* Reduce deployment-related errors
-* Full control over what changes actually matter
-* Transparent & easy-to-read logs
-* Works on any platform with Python 3
-
----
-
 ## Contribute
 
 We welcome PRs, suggestions, or improvements!
@@ -217,8 +194,6 @@ We welcome PRs, suggestions, or improvements!
 * Improve **pattern matching rules** for edge cases
 * Add **integration templates** for popular CI/CD systems
 
----
-
 ## License
 
-MIT License – use freely in personal or commercial projects.
+MIT License
